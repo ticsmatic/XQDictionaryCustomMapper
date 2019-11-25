@@ -1,0 +1,61 @@
+{
+    "success": 1,
+    "code": 200,
+    "message": "OK",
+    "http_code": 200,
+    "data": {
+        "id": 530361,
+        "real_name": "ticsmatic",
+        "subject": "物理",
+        "school_id": 476348,
+        "stu": null,
+        "classs_first": "foo",
+        "student": {
+            "s_id": "898980",
+            "name": "student1",
+            "age": 18
+        },
+        "school": {
+            "id": 476348011,
+            "name": "路北小学",
+            "area_id": 46,
+            "classs": {
+                "name": "abc",
+                "cls_id": 778123
+            }
+        },
+        "releationship": {
+            "friends": [{
+                    "name": "小红",
+                    "age": 1
+                },
+                {
+                    "name": "小明",
+                    "age": 2
+                }
+            ]
+        },
+        "profile": {
+            "nose":{
+                "size": "big"
+            }
+        },
+        "nose_size": "j",
+        "eye_size": "big",
+        "created_at": 1566203593,
+        "mobile": "17812005589",
+        "nick_name": "b老师",
+        "user_id": 530361,
+        "avatar": "http://hitetestpub-10000172.file.myqcloud.com/avatar/530361/1573805365068916.png",
+        "password_unsettled": 0,
+        "rc": {
+            "rc_user_id": "bb_user_build_530361_1",
+            "rc_token": "laRWsnKtZCKiclA0R6JI5noH0VksMVW0xHZJJnbCvTx3h0Vmdps0x/2MSqmvg8DvGHgWna1QJ0+aZbpUjJ1boHiMVEydXDj+MKw0l868PpEuwqCulT1E1A=="
+        },
+        "token": "40d6d4f8e7d747984ee31ff9ed13d0c6dc83ec79",
+        "userstep": 3,
+        "grade": "五年级",
+        "name": "易烊千玺",
+        "gender": 2
+    }
+}
