@@ -12,30 +12,29 @@
 * NSDictionary内部，从一个key的值映射到另一个key上； `@"name" : @"real_name"`
 * 多个key时，取第一个非空值映射到另外一个key上；`@"stu" : @[@"stu", @"student.name", @"school.classs.name"]`
 * 甚至支持key中包含数组标识符；`@"releationship.friends[1].name" : @"student.name"`
+* 是字典转模型工具映射功能的补充，这里映射支持多层级、且支持层级内带数组标识
 
 
 ### 使用
 ```objc
-NSMutableDictionary *mDict = _result.mutableCopy;
-    
-[mDict xq_customMapper:@{
-    @"name" : @"real_name",                                     // 'real_name' ->  'name'
-    @"stu" : @[@"stu", @"student.name", @"school.classs.name"], // select first nonull value -> 'stu'
-    @"friend_first" : @"releationship.friends[0].name",         // arrays object 'name' -> 'friend_first'
-    @"profile.nose.size" : @"nose_size",                        // 'nose_size' -> exit value and replace
-    @"profile.eye.size" : @"eye_size",                          // 'eye_size' -> create 'eye' and 'size' at 'profile'
-    @"releationship.friends[1].name" : @"student.name",         // 'student.name' -> array object at index 1 'name'
-}];
-    
-NSLog(@"%@", mDict);
+@implementation Appmodel
++ (NSDictionary *)dictionaryCustomMapper {
+    return @{@"name" : @"real_name",                            // 'real_name' ->  'name'
+           @"stu" : @[@"stu", @"student.name"],                 // select first nonull value -> 'stu'
+           @"best_friend" : @"releationship.friends[0]",        // arrays object 'name' -> 'best_friend'
+           @"profile.nose.size" : @"nose_size",                 // 'nose_size' -> exit value and replace
+           @"releationship.friends[1].name" : @"student.name",  // 'student.name' -> array object at index 1 'name'
+    };
+}
+@end
 ```
 在YYModel中有类似的方法
 ```objc
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
         @"page" : @"releationship.friends",
-        @"name" : @[@"releationship.friends[0].name", @"p", @"school.name"], // 不支持
-        @"profile.nose.size" : @"nose_size",                                 // 不支持  
+        @"name" : @[@"releationship.friends[0].name", @"p", @"school.name"], // 不支持数组内带有'[]'的数组标识
+        @"profile.nose.size" : @"nose_size",                                 // 不支持要映射到的key有多级
     };
 }
 ```
@@ -45,7 +44,7 @@ NSLog(@"%@", mDict);
     return @{
         @"page" : @"releationship.friends",
         @"name" : @[@"releationship.friends[0].name", @"p", @"school.name"],
-        @"profile.nose.size" : @"nose_size",                                // 不支持  
+        @"profile.nose.size" : @"nose_size",                                // 不支持要映射到的key有多级
         
     };
 }

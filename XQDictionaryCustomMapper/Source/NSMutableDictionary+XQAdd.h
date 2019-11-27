@@ -55,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
         + (NSDictionary *)dictionaryCustomMapper {
             return @{@"name" : @"real_name",                                             // 'real_name' ->  'name'
                    @"stu" : @[@"stu", @"student.name"],                         // select first nonull value -> 'stu'
-                   @"best_friend" : @"releationship.friends[0]",                // arrays object 'name' -> 'friend_first'
+                   @"best_friend" : @"releationship.friends[0]",                // arrays object 'name' -> 'best_friend'
                    @"profile.nose.size" : @"nose_size",                            // 'nose_size' -> exit value and replace
                    @"releationship.friends[1].name" : @"student.name",  // 'student.name' -> array object at index 1 'name'
             };
@@ -97,7 +97,7 @@ Creates and returns a new instance of the receiver from a json.
  [mDict xq_customMapper:@{
         @"name" : @"real_name",                                             // 'real_name' ->  'name'
         @"stu" : @[@"stu", @"student.name"],                         // select first nonull value -> 'stu'
-        @"best_friend" : @"releationship.friends[0]",                // arrays object 'name' -> 'friend_first'
+        @"best_friend" : @"releationship.friends[0]",                // arrays object 'name' -> 'best_friend'
         @"profile.nose.size" : @"nose_size",                            // 'nose_size' -> exit value and replace
         @"releationship.friends[1].name" : @"student.name",  // 'student.name' -> array object at index 1 'name'
  };
