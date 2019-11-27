@@ -8,6 +8,42 @@
 
 #import "NSMutableDictionary+XQAdd.h"
 
+@implementation NSObject (XQAdd)
+
++ (NSDictionary *)xq_customMapperWithJSON:(id)json {
+    NSDictionary *dic = [self _xq_dictionaryWithJSON:json];
+    if (!dic) return nil;
+    
+    Class cls = self;
+    if ([cls respondsToSelector:@selector(dictionaryCustomMapper)]) {
+        NSDictionary *customMapper = [(id <XQDictionaryCustomMapper>)cls dictionaryCustomMapper];
+        NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithDictionary:dic];
+        [mDic xq_customMapper:customMapper];
+        dic = mDic.copy;
+    }
+    return dic;
+}
+
++ (NSDictionary *)_xq_dictionaryWithJSON:(id)json {
+    if (!json || json == (id)kCFNull) return nil;
+    NSDictionary *dic = nil;
+    NSData *jsonData = nil;
+    if ([json isKindOfClass:[NSDictionary class]]) {
+        dic = json;
+    } else if ([json isKindOfClass:[NSString class]]) {
+        jsonData = [(NSString *)json dataUsingEncoding : NSUTF8StringEncoding];
+    } else if ([json isKindOfClass:[NSData class]]) {
+        jsonData = json;
+    }
+    if (jsonData) {
+        dic = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:NULL];
+        if (![dic isKindOfClass:[NSDictionary class]]) dic = nil;
+    }
+    return dic;
+}
+
+@end
+
 @implementation NSMutableDictionary (XQAdd)
 
 - (void)xq_customMapper:(NSDictionary *)customMapper {

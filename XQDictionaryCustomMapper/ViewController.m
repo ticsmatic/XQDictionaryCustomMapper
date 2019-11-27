@@ -8,50 +8,33 @@
 
 #import "ViewController.h"
 #import "NSMutableDictionary+XQAdd.h"
+#import "AppModel.h"
 
 @interface ViewController ()
-
+@property (nonatomic, strong) NSData *responseData;
 @end
 
-@implementation ViewController {
-    NSDictionary *_result;
-}
+@implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self configTestData];
     [self testCutomMapper];
 }
 
-- (void)configTestData {
-    NSData *data = [[NSData alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AppModel.json" ofType:nil]];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    _result = dict[@"data"];
-}
-
 - (void)testCutomMapper {
-    NSMutableDictionary *mDict = _result.mutableCopy;
-    
-    [mDict xq_customMapper:@{
-        @"name" : @"real_name", // 'real_name' ->  'name'
-        @"stu" : @[@"stu", @"student.name", @"school.classs.name"], // select first nonull value -> 'stu'
-        @"friend_first" : @"releationship.friends[0].name", // arrays object 'name' -> 'friend_first'
-    }];
-    
-    NSLog(@"%@", mDict);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        // Request data complete...
+        self.responseData = [[NSData alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"AppModel.json" ofType:nil]];
+        // Additional mapper before create model
+        NSDictionary *mappedData = [AppModel xq_customMapperWithJSON:self.responseData];
+        
+        // If needed, use model frame(like: YYModel, MJExtension, JSONModel, Mantle)
+        // AppModel *model = [AppModel yy_modelWithJSON:mappedData];
+        NSLog(@"%@", mappedData);
+    });
 }
 
-- (void)testCutomMapperWithNodeKey {
-    NSMutableDictionary *mDict = _result.mutableCopy;
-    
-    [mDict xq_customMapper:@{
-        @"profile.nose.size" : @"nose_size", // 'nose_size' -> exit value and replace
-        @"profile.eye.size" : @"eye_size", // 'eye_size' -> create 'eye' and 'size' at 'profile'
-        @"releationship.friends[1].name" : @"student.name", // 'student.name' -> array object at index 1 'name'
-    }];
-    
-    NSLog(@"%@", mDict);
-}
 
 @end

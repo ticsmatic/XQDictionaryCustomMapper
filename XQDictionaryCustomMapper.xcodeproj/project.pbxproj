@@ -15,6 +15,7 @@
 		552705D723853581004617BD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 552705D523853581004617BD /* LaunchScreen.storyboard */; };
 		552705DA23853581004617BD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 552705D923853581004617BD /* main.m */; };
 		552705F023853609004617BD /* NSMutableDictionary+XQAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 552705EE23853609004617BD /* NSMutableDictionary+XQAdd.m */; };
+		55C27CE2238E86B50086A3D0 /* AppModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C27CE1238E86B50086A3D0 /* AppModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,8 @@
 		552705D923853581004617BD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		552705EE23853609004617BD /* NSMutableDictionary+XQAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+XQAdd.m"; sourceTree = "<group>"; };
 		552705EF23853609004617BD /* NSMutableDictionary+XQAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+XQAdd.h"; sourceTree = "<group>"; };
+		55C27CE0238E86B50086A3D0 /* AppModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppModel.h; sourceTree = "<group>"; };
+		55C27CE1238E86B50086A3D0 /* AppModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				5517DBFB23855123003B301B /* Source */,
+				55C27CE0238E86B50086A3D0 /* AppModel.h */,
+				55C27CE1238E86B50086A3D0 /* AppModel.m */,
 				5517DBF723854E2D003B301B /* AppModel.json */,
 				552705C723853581004617BD /* AppDelegate.h */,
 				552705C823853581004617BD /* AppDelegate.m */,
@@ -160,6 +165,7 @@
 			files = (
 				552705F023853609004617BD /* NSMutableDictionary+XQAdd.m in Sources */,
 				552705CF23853581004617BD /* ViewController.m in Sources */,
+				55C27CE2238E86B50086A3D0 /* AppModel.m in Sources */,
 				552705C923853581004617BD /* AppDelegate.m in Sources */,
 				552705DA23853581004617BD /* main.m in Sources */,
 			);
