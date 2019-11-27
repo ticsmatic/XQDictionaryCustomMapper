@@ -33,8 +33,8 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{
         @"page" : @"releationship.friends",
-        @"name" : @[@"releationship.friends[0].name", @"p", @"school.name"], // 不支持数组内带有'[]'的数组标识
-        @"profile.nose.size" : @"nose_size",                                 // 不支持要映射到的key有多级
+        @"name" : @[@"releationship.friends[0].name"],          // 不支持数组内带有'[]'的数组标识
+        @"profile.nose.size" : @"nose_size",                    // 不支持要映射到的key有多级
     };
 }
 ```
@@ -43,8 +43,8 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName {
     return @{
         @"page" : @"releationship.friends",
-        @"name" : @[@"releationship.friends[0].name", @"p", @"school.name"],
-        @"profile.nose.size" : @"nose_size",                                // 不支持要映射到的key有多级
+        @"name" : @[@"releationship.friends[0].name"],
+        @"profile.nose.size" : @"nose_size",                    // 不支持要映射到的key有多级
         
     };
 }
